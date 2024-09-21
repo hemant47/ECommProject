@@ -1,25 +1,23 @@
-
 package com.example.product_service.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+import java.util.List;
+
 @Getter
 @Setter
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private String name;
+@Entity
+public class Product extends BaseModel{
+    private String title;
     private String description;
-    private double price;
-    private int quantity;
+    private String image;
+    @OneToOne
+    private Price price;
+    @ManyToOne
+    private Category category;
 }
-    

@@ -1,53 +1,54 @@
-
 package com.example.product_service.controller;
 
-import com.example.product_service.model.Product;
+import com.example.product_service.service.FakeStoreProductServiceImpl;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.product_service.dto.*;
+import com.example.product_service.exception.ProductNotFoundException;
 import com.example.product_service.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.Base64;
 
 @RestController
-@RequestMapping("/api/products")
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService; // immutable
 
-    @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    @Autowired // Autowired for constructor injection is optional from Spring 4.x+ onwards
+    public ProductController(@Qualifier("fakeStoreProductService") ProductService productService) {
+        this.productService = productService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Optional<Product> product = productService.getProductById(id);
-        return product.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    @GetMapping("/products")
+    public ResponseEntity getAllProducts() throws Exception {
+        ProductListResponseDTO response = productService.getAllProducts();
+        return ResponseEntity.ok(response);
     }
 
-    @PostMapping
-    public Product addProduct(@RequestBody Product product) {
-        return productService.addProduct(product);
+    @GetMapping("/products/{id}")
+    public ResponseEntity getProductFromId(@PathVariable("id") int id) throws ProductNotFoundException {
+        ProductResponseDTO response = productService.getProductById(id);
+        return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        Product updatedProduct = productService.updateProduct(id, product);
-        if (updatedProduct != null) {
-            return ResponseEntity.ok(updatedProduct);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @GetMapping("/products/title/{title}")
+    public ResponseEntity getProductFromTitle(@PathVariable("title") String title) throws ProductNotFoundException {
+        ProductResponseDTO response = productService.findProductByTitle(title);
+        return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        productService.deleteProduct(id);
-        return ResponseEntity.noContent().build();
+    @PostMapping("/products")
+    public ResponseEntity createProduct(@RequestBody ProductRequestDTO productRequestDTO){
+        ProductResponseDTO responseDTO = productService.createProduct(productRequestDTO);
+        return ResponseEntity.ok(responseDTO);
+    }
+
+    @DeleteMapping("/products/{id}")
+    public ResponseEntity deleteProductById(@PathVariable("id") int id){
+        boolean response = productService.deleteProduct(id);
+        return ResponseEntity.ok(response);
     }
 }
-    

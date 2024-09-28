@@ -1,10 +1,10 @@
-package com.scaler.EcomProductService.mapper;
+package com.example.product_service.mapper;
 
-import com.scaler.EcomProductService.dto.ProductListResponseDTO;
-import com.scaler.EcomProductService.dto.ProductResponseDTO;
-import com.scaler.EcomProductService.model.Category;
-import com.scaler.EcomProductService.model.Price;
-import com.scaler.EcomProductService.model.Product;
+import com.example.product_service.dto.ProductListResponseDTO;
+import com.example.product_service.dto.ProductResponseDTO;
+import com.example.product_service.model.Category;
+import com.example.product_service.model.Price;
+import com.example.product_service.model.Product;
 import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

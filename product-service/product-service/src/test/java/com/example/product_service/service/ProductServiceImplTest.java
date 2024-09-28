@@ -1,12 +1,12 @@
-package com.scaler.EcomProductService.service;
+package com.example.product_service.service;
 
-import com.scaler.EcomProductService.dto.ProductResponseDTO;
-import com.scaler.EcomProductService.exception.InvalidTitleException;
-import com.scaler.EcomProductService.exception.ProductNotFoundException;
-import com.scaler.EcomProductService.model.Category;
-import com.scaler.EcomProductService.model.Price;
-import com.scaler.EcomProductService.model.Product;
-import com.scaler.EcomProductService.repository.ProductRepository;
+import com.example.product_service.dto.ProductResponseDTO;
+import com.example.product_service.exception.InvalidTitleException;
+import com.example.product_service.exception.ProductNotFoundException;
+import com.example.product_service.model.Category;
+import com.example.product_service.model.Price;
+import com.example.product_service.model.Product;
+import com.example.product_service.repository.ProductRepository;
 import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

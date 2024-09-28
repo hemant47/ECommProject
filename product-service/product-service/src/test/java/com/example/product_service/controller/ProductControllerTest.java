@@ -1,12 +1,12 @@
-package com.scaler.EcomProductService.controller;
+package com.example.product_service.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.scaler.EcomProductService.dto.ProductListResponseDTO;
-import com.scaler.EcomProductService.dto.ProductRequestDTO;
-import com.scaler.EcomProductService.dto.ProductResponseDTO;
-import com.scaler.EcomProductService.exception.ProductNotFoundException;
-import com.scaler.EcomProductService.service.ProductService;
+import com.example.product_service.dto.ProductListResponseDTO;
+import com.example.product_service.dto.ProductRequestDTO;
+import com.example.product_service.dto.ProductResponseDTO;
+import com.example.product_service.exception.ProductNotFoundException;
+import com.example.product_service.service.ProductService;
 import org.hibernate.type.descriptor.java.ObjectJavaType;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

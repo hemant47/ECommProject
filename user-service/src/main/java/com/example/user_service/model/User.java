@@ -15,8 +15,9 @@ public class User extends BaseModel {
     private String email;
     private String password;
     @ManyToMany
-    private Set<com.example.user_service.models.Role> roles = new HashSet<>();
+    private Set<com.example.user_service.model.Role> roles = new HashSet<>();
+
+    public Set<Role> getRoles() {
+        return null;
+    }
 }
-/*
-    User Role -> M:M
- */

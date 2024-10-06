@@ -19,8 +19,8 @@ public class RoleController {
     }
 
     @PostMapping
-    public ResponseEntity<com.example.user_service.models.Role> createRole(@RequestBody CreateRoleRequestDto request) {
-        com.example.user_service.models.Role role = roleService.createRole(request.getName());
+    public ResponseEntity<com.example.user_service.model.Role> createRole(@RequestBody CreateRoleRequestDto request) {
+        com.example.user_service.model.Role role = roleService.createRole(request.getName());
         return new ResponseEntity<>(role, HttpStatus.OK);
     }
 }
